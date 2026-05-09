@@ -11,24 +11,36 @@ const MOCK_LOCATIONS: Location[] = [
     name: "Kashi Coffee Cafe",
     address: "Fort Kochi, Kerala",
     pricePerBag: 99,
+    coordinates: { lat: 9.9658, lng: 76.2421 },
+    capacity: 20,
+    imageUrl: "/Kashi Coffee Cafe.jpg",
   },
   {
     id: "loc2",
     name: "Spice Route Boutique",
     address: "Mattancherry, Kerala",
     pricePerBag: 79,
+    coordinates: { lat: 9.9684, lng: 76.2920 },
+    capacity: 20,
+    imageUrl: "/Spice Route Boutique.jpg",
   },
   {
     id: "loc3",
     name: "Heritage Gallery Store",
     address: "Kochi City Center",
     pricePerBag: 129,
+    coordinates: { lat: 9.9756, lng: 76.2847 },
+    capacity: 20,
+    imageUrl: "/Heritage Gallery Store.jpg",
   },
   {
     id: "loc4",
     name: "Backwater Lounge",
     address: "Vembanadu, Kerala",
     pricePerBag: 89,
+    coordinates: { lat: 9.9658, lng: 76.2421 },
+    capacity: 20,
+    imageUrl: "/Backwater Lounge.jpg",
   },
 ];
 
@@ -124,7 +136,7 @@ function Index() {
                 key={loc.id}
                 className="liquid-glass-strong rounded-3xl overflow-hidden flex flex-col"
               >
-                <div className="h-44 w-full bg-gradient-to-br from-white/10 to-white/5" />
+                <div className="h-44 w-full bg-cover bg-center" style={{ backgroundImage: `url(${loc.imageUrl})` }} />
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-light">
                     {loc.name.split(" ").slice(0, -1).join(" ")}{" "}

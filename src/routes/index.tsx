@@ -134,10 +134,10 @@ function Index() {
             {MOCK_LOCATIONS.map((loc) => (
               <article
                 key={loc.id}
-                className="rounded-3xl overflow-hidden flex flex-col"
+                className="liquid-glass-strong rounded-3xl overflow-hidden flex flex-col"
               >
-                <div className="h-44 w-full bg-cover bg-center relative" style={{ backgroundImage: `url(${loc.imageUrl})` }} />
-                <div className="liquid-glass-strong p-6 flex flex-col flex-1 rounded-b-3xl">
+                <div className="h-44 w-full bg-cover bg-center" style={{ backgroundImage: `url(${loc.imageUrl})` }} />
+                <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-light">
                     {loc.name.split(" ").slice(0, -1).join(" ")}{" "}
                     <span className="font-serif-italic">

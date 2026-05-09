@@ -1,11 +1,36 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Menu, MapPin, Briefcase, ArrowRight } from "lucide-react";
-import { useServerFn } from "@tanstack/react-start";
-import { getLocations } from "@/lib/euphoria.functions";
 import type { Location } from "@/lib/euphoria-store";
 import { VideoBackdrop } from "@/components/VideoBackdrop";
 import { BookingModal } from "@/components/BookingModal";
+
+const MOCK_LOCATIONS: Location[] = [
+  {
+    id: "loc1",
+    name: "Kashi Coffee Cafe",
+    address: "Fort Kochi, Kerala",
+    pricePerBag: 99,
+  },
+  {
+    id: "loc2",
+    name: "Spice Route Boutique",
+    address: "Mattancherry, Kerala",
+    pricePerBag: 79,
+  },
+  {
+    id: "loc3",
+    name: "Heritage Gallery Store",
+    address: "Kochi City Center",
+    pricePerBag: 129,
+  },
+  {
+    id: "loc4",
+    name: "Backwater Lounge",
+    address: "Vembanadu, Kerala",
+    pricePerBag: 89,
+  },
+];
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -22,13 +47,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const fetchLocations = useServerFn(getLocations);
-  const [locations, setLocations] = useState<Location[]>([]);
   const [active, setActive] = useState<Location | null>(null);
-
-  useEffect(() => {
-    fetchLocations({}).then(setLocations).catch(console.error);
-  }, [fetchLocations]);
 
   return (
     <div className="relative min-h-screen text-white">
@@ -91,7 +110,7 @@ function Index() {
           <div className="flex items-end justify-between mb-10">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-white/60">
-                03 verified spots
+                {MOCK_LOCATIONS.length} verified spots
               </p>
               <h2 className="mt-2 text-3xl md:text-4xl font-light">
                 Stash <span className="font-serif-italic">spots</span> nearby
@@ -100,15 +119,12 @@ function Index() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
-            {locations.map((loc) => (
+            {MOCK_LOCATIONS.map((loc) => (
               <article
                 key={loc.id}
                 className="liquid-glass-strong rounded-3xl overflow-hidden flex flex-col"
               >
-                <div
-                  className="h-44 w-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${loc.imageUrl})` }}
-                />
+                <div className="h-44 w-full bg-gradient-to-br from-white/10 to-white/5" />
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-light">
                     {loc.name.split(" ").slice(0, -1).join(" ")}{" "}
@@ -125,7 +141,7 @@ function Index() {
                       <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
                         <Briefcase size={12} />
                       </span>
-                      {loc.capacity} bags
+                      20 bags
                     </span>
                     <span className="ml-auto text-white">
                       ₹{loc.pricePerBag}
@@ -142,14 +158,6 @@ function Index() {
                 </div>
               </article>
             ))}
-
-            {locations.length === 0 &&
-              [0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="liquid-glass-strong rounded-3xl h-96 animate-pulse opacity-40"
-                />
-              ))}
           </div>
         </section>
 

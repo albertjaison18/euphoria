@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Minus, Plus, X, Loader2, Check, Copy } from "lucide-react";
-import { useServerFn } from "@tanstack/react-start";
-import { createBooking } from "@/lib/euphoria.functions";
 import type { Location } from "@/lib/euphoria-store";
+
+function generateBookingCode() {
+  return Math.random().toString(36).substring(2, 8).toUpperCase();
+}
 
 export function BookingModal({
   location,
@@ -11,7 +13,6 @@ export function BookingModal({
   location: Location;
   onClose: () => void;
 }) {
-  const create = useServerFn(createBooking);
   const [bags, setBags] = useState(1);
   const [dropOff, setDropOff] = useState("10:00");
   const [pickUp, setPickUp] = useState("18:00");
@@ -24,16 +25,9 @@ export function BookingModal({
   async function confirm() {
     setLoading(true);
     try {
-      const today = new Date().toISOString().slice(0, 10);
-      const booking = await create({
-        data: {
-          locationId: location.id,
-          numberOfBags: bags,
-          dropOffTime: `${today}T${dropOff}`,
-          pickUpTime: `${today}T${pickUp}`,
-        },
-      });
-      setCode(booking.bookingCode);
+      // Simulate booking creation
+      await new Promise(resolve => setTimeout(resolve, 800));
+      setCode(generateBookingCode());
     } catch (e) {
       console.error(e);
     } finally {

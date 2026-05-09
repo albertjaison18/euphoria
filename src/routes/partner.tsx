@@ -1,7 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
-import { getBooking, updateBookingStatus } from "@/lib/euphoria.functions";
 import type { Booking, BookingStatus } from "@/lib/euphoria-store";
 import { VideoBackdrop } from "@/components/VideoBackdrop";
 import { ArrowLeft, Search, Loader2, Briefcase, Clock } from "lucide-react";
@@ -17,8 +15,6 @@ export const Route = createFileRoute("/partner")({
 });
 
 function Partner() {
-  const fetchBooking = useServerFn(getBooking);
-  const updateStatus = useServerFn(updateBookingStatus);
   const [code, setCode] = useState("");
   const [booking, setBooking] = useState<Booking | null>(null);
   const [loading, setLoading] = useState(false);
@@ -32,10 +28,9 @@ function Partner() {
     setLoading(true);
     setError(null);
     try {
-      const b = await fetchBooking({ data: { code: code.toUpperCase() } });
-      setBooking(b);
-    } catch {
-      setError("No booking found for that code");
+      // Simulate booking lookup
+      await new Promise(resolve => setTimeout(resolve, 500));
+      setError("Demo mode - booking not found. This is a static preview.");
       setBooking(null);
     } finally {
       setLoading(false);
@@ -46,10 +41,9 @@ function Partner() {
     if (!booking) return;
     setLoading(true);
     try {
-      const b = await updateStatus({
-        data: { code: booking.bookingCode, status },
-      });
-      setBooking(b);
+      // Simulate status update
+      await new Promise(resolve => setTimeout(resolve, 500));
+      setBooking({ ...booking, status });
     } finally {
       setLoading(false);
     }

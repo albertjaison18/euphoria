@@ -13,7 +13,7 @@ const MOCK_LOCATIONS: Location[] = [
     pricePerBag: 99,
     coordinates: { lat: 9.9658, lng: 76.2421 },
     capacity: 20,
-    imageUrl: "/Kashi Coffee Cafe.jpg",
+    imageUrl: "/Kashi%20Coffee%20Cafe.jpg",
   },
   {
     id: "loc2",
@@ -22,7 +22,7 @@ const MOCK_LOCATIONS: Location[] = [
     pricePerBag: 79,
     coordinates: { lat: 9.9684, lng: 76.2920 },
     capacity: 20,
-    imageUrl: "/Spice Route Boutique.jpg",
+    imageUrl: "/Spice%20Route%20Boutique.jpg",
   },
   {
     id: "loc3",
@@ -31,7 +31,7 @@ const MOCK_LOCATIONS: Location[] = [
     pricePerBag: 129,
     coordinates: { lat: 9.9756, lng: 76.2847 },
     capacity: 20,
-    imageUrl: "/Heritage Gallery Store.jpg",
+    imageUrl: "/Heritage%20Gallery%20Store.jpg",
   },
   {
     id: "loc4",
@@ -40,7 +40,7 @@ const MOCK_LOCATIONS: Location[] = [
     pricePerBag: 89,
     coordinates: { lat: 9.9658, lng: 76.2421 },
     capacity: 20,
-    imageUrl: "/Backwater Lounge.jpg",
+    imageUrl: "/Backwater%20Lounge.jpg",
   },
 ];
 
